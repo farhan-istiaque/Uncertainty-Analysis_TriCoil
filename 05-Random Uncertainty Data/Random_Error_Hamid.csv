@@ -1,0 +1,2 @@
+Variable,Tdb_in (K),Twb_in (K),Tdb_out (K),Twb_out (K),dP_nozzle_TriCoil (Pa),Pin_nozzle_TriCoil (Pa),Atm Pressure (Pa),m_dot_r (kg/s),T_evap_out (K),P_evap_out (Pa),T_exv_in (K),P_exv_in (Pa),m_dot_w (kg/s),T_w_in (K),P_w_in (Pa),T_w_out (K),dp_w (K)
+Random Error,0.059560731,0.029584183,0.047939136,0.031942316,8.849760032,522.2642636,19.16234939,0.001719437,0.344029025,7134.719556,0.109525494,5220.109099,0.000577288,0.106792505,375.3605458,0.120328823,1.421448828
