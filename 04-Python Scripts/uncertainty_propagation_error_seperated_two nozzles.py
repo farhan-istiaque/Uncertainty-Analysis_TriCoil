@@ -239,6 +239,7 @@ plt_dir = prj_fold_loc + "\\06-plots\\"
 
 rnd_un_T_db_in = 2 * np.std(T_db_in)
 rnd_un_T_wb_in = 2 * np.std(T_wb_in)
+# rnd_un_T_db_out = 2 * np.std(T_db_out)
 rnd_un_T_db_out = 2 * np.std(T_db_out)
 rnd_un_T_wb_out = 2 * np.std(T_wb_out)
 rnd_un_dp_a = 2 * np.std(dp_a)
@@ -259,22 +260,22 @@ rnd_un_m_dot_w = 2 * np.std(m_dot_w)
 Systemetic Uncertainties
 """
 
-sys_un_T_db_in = 0.03 #K
-sys_un_T_wb_in = 0.03 #K
-sys_un_T_db_out = 0.03 #K
-sys_un_T_wb_out = 0.03 #K
+sys_un_T_db_in = 0.002 #K
+sys_un_T_wb_in = 0.006 #K
+sys_un_T_db_out = 0.05 #K
+sys_un_T_wb_out = 0.00 #K
 sys_un_dp_a = 1.8663 #Pa
 sys_un_Pa_in = 6.221 #Pa
 sys_un_Pa_atm = 0.001 #Pa
-sys_un_T_r_exv_in = 0.1 + (0.0017 * T_r_exv_in_avg)#K
+sys_un_T_r_exv_in = 0.007 #K
 sys_un_P_r_exv_in =4481.594 #Pa
-sys_un_T_r_evap_out = 0.1 + (0.0017 * T_r_evap_out_avg) #K
+sys_un_T_r_evap_out = 0.005 #K
 sys_un_P_r_evap_out = 4481.594 #Pa
 sys_un_m_dot_r = 0.001 * m_dot_r_avg #kg/s
 #sys_un_T_w_in = 0.1 + (0.0017 * T_w_in_avg) #K
-sys_un_T_w_in = 0.03
+sys_un_T_w_in = 0.005
 #sys_un_T_w_out = 0.1 + (0.0017 * T_w_out_avg) #K
-sys_un_T_w_out = 0.03
+sys_un_T_w_out = 0.004
 sys_un_P_w_in = 4481.594 #Pa
 sys_un_dp_w = 93.315 #Pa
 sys_un_m_dot_w =  0.001 * m_dot_w_avg #kg/s
@@ -647,9 +648,11 @@ print("Capacity of Refrigerant in W: ", Q_refr)
 a_w_heat_bal = (abs(Q_air_sens.nominal_value) - abs(Q_water.nominal_value))*100/(0.5*(abs(Q_air_sens.nominal_value) + abs(Q_water.nominal_value)))
 a_r_heat_bal = (abs(Q_air_sens.nominal_value) - abs(Q_refr.nominal_value))*100/(0.5*(abs(Q_air_sens.nominal_value) + abs(Q_refr.nominal_value)))
 w_r_heat_bal = (abs(Q_water.nominal_value) - abs(Q_refr.nominal_value))*100/(0.5*(abs(Q_water.nominal_value) + abs(Q_refr.nominal_value)))
+a_w_r_heat_bal = ((abs(Q_air_sens.nominal_value) + abs(Q_water.nominal_value)) - abs(Q_refr.nominal_value))*100/(0.5*((abs(Q_air_sens.nominal_value) + abs(Q_water.nominal_value)) + abs(Q_refr.nominal_value)))
 print("Air-Water heat balance: ", a_w_heat_bal)
 print("Air-Refr heat balance: ", a_r_heat_bal)
 print("Water-Refr heat balance: ", w_r_heat_bal)
+print("Air+Water_Refr heat balance: ", a_w_r_heat_bal)
 
 """
 Writing to CSV file
@@ -694,7 +697,8 @@ with open(files, 'a') as f_object:
             Q_refr, 
             a_w_heat_bal, 
             a_r_heat_bal, 
-            w_r_heat_bal]
+            w_r_heat_bal,
+            a_w_r_heat_bal]
     writer_object.writerow(List)
     # Close the file object
     f_object.close()

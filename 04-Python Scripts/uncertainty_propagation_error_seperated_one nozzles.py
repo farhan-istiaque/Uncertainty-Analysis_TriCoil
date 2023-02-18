@@ -259,22 +259,22 @@ rnd_un_m_dot_w = 2 * np.std(m_dot_w)
 Systemetic Uncertainties
 """
 
-sys_un_T_db_in = 0.03 #K
-sys_un_T_wb_in = 0.03 #K
-sys_un_T_db_out = 0.03 #K
-sys_un_T_wb_out = 0.03 #K
+sys_un_T_db_in = 0.002 #K
+sys_un_T_wb_in = 0.006 #K
+sys_un_T_db_out = 0.05 #K
+sys_un_T_wb_out = 0.00 #K
 sys_un_dp_a = 1.8663 #Pa
 sys_un_Pa_in = 6.221 #Pa
 sys_un_Pa_atm = 0.001 #Pa
-sys_un_T_r_exv_in = 0.1 + (0.0017 * T_r_exv_in_avg)#K
+sys_un_T_r_exv_in = 0.007 #K
 sys_un_P_r_exv_in =4481.594 #Pa
-sys_un_T_r_evap_out = 0.1 + (0.0017 * T_r_evap_out_avg) #K
+sys_un_T_r_evap_out = 0.005 #K
 sys_un_P_r_evap_out = 4481.594 #Pa
 sys_un_m_dot_r = 0.001 * m_dot_r_avg #kg/s
 #sys_un_T_w_in = 0.1 + (0.0017 * T_w_in_avg) #K
-sys_un_T_w_in = 0.03
+sys_un_T_w_in = 0.005
 #sys_un_T_w_out = 0.1 + (0.0017 * T_w_out_avg) #K
-sys_un_T_w_out = 0.03
+sys_un_T_w_out = 0.004
 sys_un_P_w_in = 4481.594 #Pa
 sys_un_dp_w = 93.315 #Pa
 sys_un_m_dot_w =  0.001 * m_dot_w_avg #kg/s
@@ -594,7 +594,7 @@ if sort_legend:
                                           reverse=True))
 
 plt.legend(patches, labels, loc='center left', bbox_to_anchor=(-0.5, 1.),
-           fontsize=11)
+            fontsize=11)
 plt.savefig(plt_dir + 'Uncertainty analysis of Refrigerant Capacity',
             dpi = 300,  bbox_inches = 'tight')
 
@@ -615,7 +615,7 @@ if sort_legend:
                                           reverse=True))
 
 plt.legend(patches, labels, loc='center left', bbox_to_anchor=(-0.5, 1.),
-           fontsize=11)
+            fontsize=11)
 plt.savefig(plt_dir +'Uncertainty analysis of Refr Inlet Enthalpy',
             dpi = 300,  bbox_inches = 'tight')
 
@@ -636,7 +636,7 @@ if sort_legend:
                                           reverse=True))
 
 plt.legend(patches, labels, loc='center left', bbox_to_anchor=(-0.5, 1.),
-           fontsize=11)
+            fontsize=11)
 plt.savefig(plt_dir + 'Uncertainty analysis of Refr Outlet Enthalpy',
             dpi = 300,  bbox_inches = 'tight')
 
@@ -694,7 +694,8 @@ with open(files, 'a') as f_object:
             Q_refr, 
             a_w_heat_bal, 
             a_r_heat_bal, 
-            w_r_heat_bal]
+            w_r_heat_bal
+            ]
     writer_object.writerow(List)
     # Close the file object
     f_object.close()
