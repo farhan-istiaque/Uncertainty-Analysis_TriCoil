@@ -37,7 +37,7 @@ import os
 from pathlib import Path
 
 def air_flow(delta_P, un_delta_P, P_a, P_a_un, T_db, T_db_un, T_wb, T_wb_un,
-             ND, un_ND):
+             ND, un_ND, Test_name):
     '''
     Function to calculate the uncertainty in air flowrate
     delta_P: pressure drop across nozzle in Pa
@@ -160,7 +160,11 @@ def air_flow(delta_P, un_delta_P, P_a, P_a_un, T_db, T_db_un, T_wb, T_wb_un,
                fontsize=11)
     scr_loc = os.path.dirname( __file__ ) #Script Location
     prj_fold_loc = str(Path(scr_loc).parents[0]) #Project folder location
-    plt_dir = prj_fold_loc + "\\06-plots\\"
+    plot_ind_dir = Test_name + "\\"
+    plt_dir = prj_fold_loc + "\\06-plots\\" + plot_ind_dir
+    plt_dir_exist = os.path.exists(plt_dir)
+    if not plt_dir_exist:
+        os.makedirs(plt_dir)
     plt.savefig(plt_dir + 'Uncertainty analysis of Air flow rate',
             dpi = 300,  bbox_inches = 'tight')
     #print (Error)
